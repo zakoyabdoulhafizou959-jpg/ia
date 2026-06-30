@@ -6,7 +6,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#0a0a0f">
-    <title>Oullam IA</title>
+    <title>Ouallam IA</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -1035,7 +1035,7 @@
 <!-- Splash Screen -->
 <div class="splash" id="splash">
     <div class="splash-logo">O</div>
-    <div class="splash-title">Oullam IA</div>
+    <div class="splash-title">Ouallam IA</div>
     <div class="splash-subtitle">Assistant Intelligent</div>
     <div class="splash-loader"></div>
 </div>
@@ -1058,7 +1058,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <div class="header-title">
-                <h1>Oullam IA</h1>
+                <h1>Ouallam IA</h1>
                 <p id="statusText">En ligne</p>
             </div>
         </div>
@@ -1133,7 +1133,7 @@
         <div class="sidebar-brand">
             <div class="sidebar-logo">O</div>
             <div class="sidebar-brand-text">
-                <h2>Oullam IA</h2>
+                <h2>Ouallam IA</h2>
                 <p>par Abdoul Hafizou</p>
             </div>
         </div>
@@ -1172,7 +1172,7 @@
     <div class="voice-waves">
         <span></span><span></span><span></span><span></span>
     </div>
-    <span style="font-size:12px;">Oullam parle...</span>
+    <span style="font-size:12px;">Ouallam parle...</span>
     <button class="stop-voice" id="stopVoiceBtn">
         <i class="fas fa-stop"></i>
     </button>
@@ -1357,25 +1357,25 @@ Je reste disponible pour toute question constructive. 🙏`;
 
 // ===== STATE =====
 const state = {
-    apiUrl: localStorage.getItem('oullam_apiUrl') || 'https://api.groq.com/openai/v1/chat/completions',
-    apiKey: localStorage.getItem('oullam_apiKey') || '',
-    model: localStorage.getItem('oullam_model') || 'llama-3.1-8b-instant', // Modèle avec moins de limites
-    systemPrompt: localStorage.getItem('oullam_systemPrompt') || `Tu es Ouallam IA, une intelligence artificielle bienveillante développée par Abdoul Hafizou.
+    apiUrl: localStorage.getItem('Ouallam_apiUrl') || 'https://api.groq.com/openai/v1/chat/completions',
+    apiKey: localStorage.getItem('Ouallam_apiKey') || '',
+    model: localStorage.getItem('Ouallam_model') || 'llama-3.1-8b-instant', // Modèle avec moins de limites
+    systemPrompt: localStorage.getItem('Ouallam_systemPrompt') || `Tu es Ouallam IA, une intelligence artificielle bienveillante développée par Abdoul Hafizou.
 
 🎯 TA MISSION : Aider les utilisateurs, les informer, les éduquer et les accompagner. JAMAIS leur nuire.
 
 🚫 INTERDICTIONS STRICTES : armes, drogues, piratage, violence, haine, illégal, suicide.
 
 ✅ COMPORTEMENT : refuse poliment les demandes dangereuses, réponds en français, présente-toi comme Ouallam IA créé par Abdoul Hafizou.`,
-    conversations: JSON.parse(localStorage.getItem('oullam_conversations') || '[]'),
+    conversations: JSON.parse(localStorage.getItem('Ouallam_conversations') || '[]'),
     currentConvId: null,
     isStreaming: false,
     abortController: null,
-    autoSpeak: localStorage.getItem('oullam_autoSpeak') === 'true',
-    voiceName: localStorage.getItem('oullam_voiceName') || '',
-    voiceRate: parseFloat(localStorage.getItem('oullam_voiceRate') || '1'),
-    voicePitch: parseFloat(localStorage.getItem('oullam_voicePitch') || '1'),
-    voiceVolume: parseFloat(localStorage.getItem('oullam_voiceVolume') || '1'),
+    autoSpeak: localStorage.getItem('Ouallam_autoSpeak') === 'true',
+    voiceName: localStorage.getItem('Ouallam_voiceName') || '',
+    voiceRate: parseFloat(localStorage.getItem('Ouallam_voiceRate') || '1'),
+    voicePitch: parseFloat(localStorage.getItem('Ouallam_voicePitch') || '1'),
+    voiceVolume: parseFloat(localStorage.getItem('Ouallam_voiceVolume') || '1'),
     availableVoices: [],
     recognition: null,
     isRecording: false,
@@ -1594,7 +1594,7 @@ function getCurrentConv() {
 }
 
 function saveConversations() {
-    localStorage.setItem('oullam_conversations', JSON.stringify(state.conversations));
+    localStorage.setItem('Ouallam_conversations', JSON.stringify(state.conversations));
 }
 
 function loadConversation(id) {
@@ -1945,7 +1945,7 @@ $('micBtn').addEventListener('click', toggleRecording);
 
 $('voiceToggle').addEventListener('click', () => {
     state.autoSpeak = !state.autoSpeak;
-    localStorage.setItem('oullam_autoSpeak', state.autoSpeak);
+    localStorage.setItem('Ouallam_autoSpeak', state.autoSpeak);
     updateVoiceToggleUI();
     showToast(state.autoSpeak ? '🔊 Lecture auto ON' : '🔇 Lecture auto OFF');
 });
@@ -2010,9 +2010,9 @@ $('saveSettings').addEventListener('click', () => {
     state.apiUrl = $('apiUrl').value.trim();
     state.apiKey = $('apiKey').value.trim();
     state.model = model;
-    localStorage.setItem('oullam_apiUrl', state.apiUrl);
-    localStorage.setItem('oullam_apiKey', state.apiKey);
-    localStorage.setItem('oullam_model', state.model);
+    localStorage.setItem('Ouallam_apiUrl', state.apiUrl);
+    localStorage.setItem('Ouallam_apiKey', state.apiKey);
+    localStorage.setItem('Ouallam_model', state.model);
     updateConnectionStatus(!!state.apiKey);
     closeModal('settingsModal');
     showToast('✅ Sauvegardé !');
@@ -2044,11 +2044,11 @@ $('saveVoiceSettings').addEventListener('click', () => {
     state.voiceRate = parseFloat($('voiceRate').value);
     state.voicePitch = parseFloat($('voicePitch').value);
     state.voiceVolume = parseFloat($('voiceVolume').value);
-    localStorage.setItem('oullam_autoSpeak', state.autoSpeak);
-    localStorage.setItem('oullam_voiceName', state.voiceName);
-    localStorage.setItem('oullam_voiceRate', state.voiceRate);
-    localStorage.setItem('oullam_voicePitch', state.voicePitch);
-    localStorage.setItem('oullam_voiceVolume', state.voiceVolume);
+    localStorage.setItem('Ouallam_autoSpeak', state.autoSpeak);
+    localStorage.setItem('Ouallam_voiceName', state.voiceName);
+    localStorage.setItem('Ouallam_voiceRate', state.voiceRate);
+    localStorage.setItem('Ouallam_voicePitch', state.voicePitch);
+    localStorage.setItem('Ouallam_voiceVolume', state.voiceVolume);
     updateVoiceToggleUI();
     closeModal('voiceSettingsModal');
     showToast('🎤 Paramètres vocaux sauvegardés');
@@ -2065,7 +2065,7 @@ $('safetyModal').addEventListener('click', e => { if (e.target === $('safetyModa
 
 $('saveSafety').addEventListener('click', () => {
     state.systemPrompt = $('systemPrompt').value.trim();
-    localStorage.setItem('oullam_systemPrompt', state.systemPrompt);
+    localStorage.setItem('Ouallam_systemPrompt', state.systemPrompt);
     closeModal('safetyModal');
     showToast('🛡️ Règles mises à jour');
 });
