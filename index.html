@@ -119,18 +119,9 @@
             background: var(--bg-primary);
         }
 
-        .status-bar {
-            padding: calc(var(--safe-top) + 8px) 20px 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
-            font-weight: 600;
-            background: var(--bg-primary);
-        }
-
         .header {
             padding: 12px 20px 16px;
+            padding-top: calc(var(--safe-top) + 12px);
             background: var(--bg-primary);
             display: flex;
             align-items: center;
@@ -866,27 +857,6 @@
             font-weight: 600;
         }
 
-        .status-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .status-chip.connected {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent);
-        }
-
-        .status-chip.disconnected {
-            background: rgba(239, 68, 68, 0.15);
-            color: var(--danger);
-        }
-
         .modal-actions {
             display: flex;
             gap: 10px;
@@ -1028,16 +998,6 @@
 </div>
 
 <div class="app">
-    <!-- Status Bar -->
-    <div class="status-bar">
-        <span id="clock">--:--</span>
-        <div style="display:flex; gap:6px; align-items:center;">
-            <i class="fas fa-signal" style="font-size:12px;"></i>
-            <i class="fas fa-wifi" style="font-size:12px;"></i>
-            <i class="fas fa-battery-full" style="font-size:14px;"></i>
-        </div>
-    </div>
-
     <!-- Header -->
     <div class="header">
         <div class="header-left">
@@ -1313,8 +1273,6 @@ const statusText = $('statusText');
 // ===== INIT =====
 function init() {
     setTimeout(() => $('splash').classList.add('hidden'), 1500);
-    updateClock();
-    setInterval(updateClock, 1000);
     
     renderConversations();
     if (state.conversations.length > 0) loadConversation(state.conversations[0].id);
@@ -1322,12 +1280,6 @@ function init() {
     initSpeechSynthesis();
     initSpeechRecognition();
     updateVoiceToggleUI();
-}
-
-function updateClock() {
-    const now = new Date();
-    $('clock').textContent = now.getHours().toString().padStart(2,'0') + ':' + 
-                              now.getMinutes().toString().padStart(2,'0');
 }
 
 // ===== SYNTHÈSE VOCALE =====
